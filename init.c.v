@@ -1,12 +1,12 @@
 module tomcrypt
 
-fn C.register_hash() int
-fn C.register_prng() int 
-fn C.register_cipher() int 
+fn C.register_hash(voidptr) int
+fn C.register_prng(voidptr) int
+fn C.register_cipher(voidptr) int 
 
-fn C.find_prng() int
-fn C.find_hash() int
-fn C.find_cipher() int
+fn C.find_prng(charptr) int
+fn C.find_hash(charptr) int
+fn C.find_cipher(charptr) int
 
 fn init() {
 	if C.register_prng(&C.sprng_desc) == -1 {
