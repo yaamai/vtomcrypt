@@ -15,6 +15,9 @@ fn init() {
 	if C.register_hash(&C.sha1_desc) == -1 {
 		panic('Error registering SHA1 hash')
 	}
+	if C.register_hash(&C.sha256_desc) == -1 {
+		panic('Error registering SHA256 hash')
+	}
 	if C.register_cipher(&C.aes_desc) == -1 {
 		panic('Error registering aes cipher')
 	}
