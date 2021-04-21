@@ -11,6 +11,8 @@ fn C.ecc_import(voidptr, size_t, voidptr) int
 fn C.ecc_sign_hash_rfc7518(voidptr, size_t, voidptr, &size_t, voidptr, int, voidptr) int
 // int ecc_verify_hash_rfc7518(const unsigned char *sig,unsigned long  siglen,const unsigned char *hash,unsigned long  hashlen,int *stat,ecc_key *key);
 fn C.ecc_verify_hash_rfc7518(voidptr, size_t, voidptr, size_t, &int, voidptr) int
+// void ecc_free(ecc_key *key);
+fn C.ecc_free(voidptr)
 
 struct EccKey {
 	key C.Ecc_key
@@ -70,4 +72,9 @@ pub fn (k EccKey) verify_rfc7518(data []byte, sig []byte) ?bool {
 	}
 
 	return (int(stat) != 0)
+}
+
+[unsafe]
+fn (k &EccKey) free() {
+	C.ecc_free(&k.key)
 }
